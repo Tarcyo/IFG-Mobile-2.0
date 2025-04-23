@@ -7,8 +7,13 @@ environment:
   sdk:  ^	3.7.2
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter 
+  flutter_native_splash: ^2.3.0
+
+flutter_native_splash:
+  color: "#ffffff" # Cor de fundo
+  image: assets/splash2.png # Caminho da sua imagem
+  android: true
+  android_gravity: center
 
 dependencies:
   flutter:
