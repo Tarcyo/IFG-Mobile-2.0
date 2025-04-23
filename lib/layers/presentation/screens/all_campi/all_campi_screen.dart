@@ -7,7 +7,7 @@ import 'package:ifg_mobile_estudante/layers/presentation/screens/campus_screen/c
 import 'package:ifg_mobile_estudante/layers/presentation/styles/colors.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
-
+import 'screen_hader.dart';
 class AllCampiScreen extends StatelessWidget {
   const AllCampiScreen({super.key});
 
@@ -78,42 +78,11 @@ class __AllCampiViewState extends State<_AllCampiView> {
         horizontal: size.width * 0.03,
         vertical: size.height * 0.02,
       ),
-      child: Column(children: [_buildHeader(size), _buildCampusGrid(size)]),
+      child: Column(children: [buildHeader(size), _buildCampusGrid(size)]),
     );
   }
 
-  Widget _buildHeader(Size size) {
-    return Column(
-      children: [
-        SizedBox(height: size.height * 0.02),
-        CircleAvatar(
-          radius: size.height * 0.08,
-          backgroundColor: AppColors.textColor,
-          child: Icon(
-            Icons.travel_explore_rounded,
-            size: size.height * 0.06,
-            color: AppColors.solidBackgroundColor,
-          ),
-        ),
-        SizedBox(height: size.height * 0.015),
-        Text(
-          'Campi',
-          style: TextStyle(
-            fontSize: size.width * 0.06,
-            fontWeight: FontWeight.bold,
-            color: AppColors.textColor,
-            shadows: const [
-              Shadow(
-                color: Colors.black54,
-                blurRadius: 4,
-                offset: Offset(1, 1),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
+
 
   Widget _buildCampusGrid(Size size) {
     const campusList = [
@@ -151,11 +120,12 @@ class __AllCampiViewState extends State<_AllCampiView> {
             childAspectRatio: _calculateAspectRatio(size),
           ),
           itemCount: campusList.length,
-          itemBuilder: (context, index) => CampusCard(
-            title: campusList[index],
-            imagePath: "assets/images/${campusList[index]}.jpg",
-            onTap: () => _navigateToCampus(context, campusList[index]),
-          ),
+          itemBuilder:
+              (context, index) => CampusCard(
+                title: campusList[index],
+                imagePath: "assets/images/${campusList[index]}.jpg",
+                onTap: () => _navigateToCampus(context, campusList[index]),
+              ),
         );
       },
     );
@@ -173,8 +143,14 @@ class __AllCampiViewState extends State<_AllCampiView> {
 
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (_) => CampusScreen(name: campus, dados: dados),
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 350),
+        pageBuilder:
+            (_, animation, secondaryAnimation) =>
+                CampusScreen(name: campus, dados: dados),
+        transitionsBuilder: (_, animation, __, child) {
+          return FadeTransition(opacity: animation, child: child);
+        },
       ),
     );
   }

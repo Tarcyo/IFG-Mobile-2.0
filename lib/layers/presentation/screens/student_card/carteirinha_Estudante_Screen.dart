@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/screens/student_card/back_card.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/screens/student_card/front_card.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/styles/colors.dart';
-
+import 'screen_header.dart';
 class CarteirinhaEstudanteScreen extends StatefulWidget {
   const CarteirinhaEstudanteScreen({Key? key}) : super(key: key);
 
@@ -55,7 +55,6 @@ class _CarteirinhaEstudanteScreenState extends State<CarteirinhaEstudanteScreen>
       extendBody: true,
       body: Container(
         decoration: const BoxDecoration(
-          // Mantivemos a cor base do gradiente, mas utilizamos a cor centralizada para o fundo.
           gradient: LinearGradient(
             colors: [Color(0xFF004D40), AppColors.solidBackgroundColor],
             begin: Alignment.topCenter,
@@ -66,53 +65,7 @@ class _CarteirinhaEstudanteScreenState extends State<CarteirinhaEstudanteScreen>
           child: Column(
             children: [
               // Cabeçalho com botão de voltar e título
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: size.width * 0.04,
-                  vertical: verticalPadding,
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.1),
-                        shape: BoxShape.circle,
-                        boxShadow: const [
-                          BoxShadow(
-                            color: AppColors.shadowColor,
-                            blurRadius: 4,
-                            offset: Offset(2, 2),
-                          ),
-                        ],
-                      ),
-                      child: IconButton(
-                        icon: const Icon(Icons.arrow_back, color: Colors.white),
-                        onPressed: () => Navigator.of(context).pop(),
-                      ),
-                    ),
-                    SizedBox(width: size.width * 0.03),
-                    Expanded(
-                      child: Text(
-                        'Carteira do Estudante',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: AppColors.textColor,
-                          fontSize: size.width * 0.06,
-                          fontWeight: FontWeight.bold,
-                          shadows: const [
-                            Shadow(
-                              blurRadius: 3,
-                              color: Colors.black38,
-                              offset: Offset(1, 1),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: size.width * 0.13),
-                  ],
-                ),
-              ),
+              CustomHeader(verticalPadding: verticalPadding, size: size),
               // Corpo com o cartão animado
               Expanded(
                 child: Center(
@@ -158,8 +111,6 @@ class _CarteirinhaEstudanteScreenState extends State<CarteirinhaEstudanteScreen>
                         fontSize: size.width * 0.038,
                       ),
                     ),
-                    // Caso deseje usar o estilo definido em card_text_style.dart, uma alternativa seria:
-                    // style: cardTextStyle(size, fontSize: size.width * 0.038),
                   ],
                 ),
               ),

@@ -26,17 +26,23 @@ class ScreenHeader extends StatelessWidget {
     final screenWidth = size.width;
     final screenHeight = size.height;
 
+    // 📐 Proporções baseadas no ScreenHeader original
     final double horizontalPadding = screenWidth * 0.04;
     final double iconSize = screenWidth * 0.065;
     final double titleFontSize = screenWidth * 0.06;
+    final double shadowBlur = screenWidth * 0.008;
+    final double spacing = screenWidth * 0.03;
+    final double fakeRightSpace = screenWidth * 0.13;
+
+    // Dropdown específico
     final double dropdownFontSize = screenWidth * 0.03;
-    final double dropdownPadding = screenHeight * 0.018;
     final double dropdownRadius = screenWidth * 0.02;
+    final double dropdownPadding = screenHeight * 0.018;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        // Cabeçalho
+        // 🔹 Cabeçalho com botão e título
         Padding(
           padding: EdgeInsets.symmetric(
             vertical: verticalPadding,
@@ -44,21 +50,36 @@ class ScreenHeader extends StatelessWidget {
           ),
           child: Row(
             children: [
-              IconButton(
-                icon: Icon(
-                  Icons.arrow_back,
-                  color: AppColors.textColor,
-                  size: iconSize,
+              // 🔙 Botão de voltar
+              Container(
+                decoration: BoxDecoration(
+                  color: AppColors.textColor.withAlpha(25),
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.shadowColor,
+                      blurRadius: shadowBlur,
+                      offset: Offset(iconSize * 0.07, iconSize * 0.07),
+                    ),
+                  ],
                 ),
-                onPressed: () {
-                  Provider.of<NotasControlerProvider>(
-                    context,
-                    listen: false,
-                  ).controller;
-
-                  Navigator.pop(context);
-                },
+                child: IconButton(
+                  iconSize: iconSize,
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: AppColors.textColor,
+                    size: iconSize,
+                  ),
+                  onPressed: () {
+                    Provider.of<NotasControlerProvider>(
+                      context,
+                      listen: false,
+                    ).controller;
+                    Navigator.pop(context);
+                  },
+                ),
               ),
+              SizedBox(width: spacing),
               Expanded(
                 child: Text(
                   title,
@@ -66,15 +87,23 @@ class ScreenHeader extends StatelessWidget {
                     color: AppColors.textColor,
                     fontSize: titleFontSize,
                     fontWeight: FontWeight.bold,
+                    shadows: [
+                      Shadow(
+                        blurRadius: shadowBlur * 1.5,
+                        color: AppColors.shadowColor,
+                        offset: Offset(shadowBlur, shadowBlur),
+                      ),
+                    ],
                   ),
                   textAlign: TextAlign.center,
                 ),
               ),
-              SizedBox(width: iconSize + 16),
+              SizedBox(width: fakeRightSpace),
             ],
           ),
         ),
-        // Dropdown com gradiente
+
+        // 🔻 Dropdown com gradiente
         Padding(
           padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
           child: DecoratedBox(
@@ -87,9 +116,9 @@ class ScreenHeader extends StatelessWidget {
               borderRadius: BorderRadius.circular(dropdownRadius),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.buttonShadowColor,
-                  blurRadius: 4,
-                  offset: const Offset(0, 2),
+                  color: AppColors.shadowColor,
+                  blurRadius: shadowBlur,
+                  offset: Offset(0, 2),
                 ),
               ],
             ),
@@ -130,27 +159,26 @@ class ScreenHeader extends StatelessWidget {
                       onDisciplineSelected(newValue);
                     }
                   },
-                  items:
-                      disciplines.map((discipline) {
-                        return DropdownMenuItem<String>(
-                          value: discipline,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: dropdownPadding,
-                              vertical: dropdownPadding * 0.6,
-                            ),
-                            child: Text(
-                              discipline,
-                              style: TextStyle(
-                                color: AppColors.textColor,
-                                fontSize: dropdownFontSize,
-                                fontFamily: "Quicksand",
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                  items: disciplines.map((discipline) {
+                    return DropdownMenuItem<String>(
+                      value: discipline,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: dropdownPadding,
+                          vertical: dropdownPadding * 0.6,
+                        ),
+                        child: Text(
+                          discipline,
+                          style: TextStyle(
+                            color: AppColors.textColor,
+                            fontSize: dropdownFontSize,
+                            fontFamily: "Quicksand",
+                            fontWeight: FontWeight.bold,
                           ),
-                        );
-                      }).toList(),
+                        ),
+                      ),
+                    );
+                  }).toList(),
                 ),
               ),
             ),

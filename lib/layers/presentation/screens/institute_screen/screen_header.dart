@@ -30,42 +30,42 @@ class ScreenHeader extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
-                  color: AppColors.shadowColor,  // Usando a cor de sombra
-                  offset: const Offset(0, 2),
+                  color: AppColors.shadowColor,
+                  offset: Offset(0, 2),
                   blurRadius: 4,
                 ),
               ],
             ),
             child: CircleAvatar(
               radius: avatarRadius,
-              backgroundColor: Colors.white,
+              backgroundColor: AppColors.textColor,
               child: Icon(
                 icon,
                 size: iconSize,
-                color: iconColor ?? AppColors.textColor,  // Usando a cor de ícone
+                color: iconColor ?? AppColors.solidBackgroundColor,
               ),
             ),
           ),
-          SizedBox(height: verticalPadding * 0.5),
+          SizedBox(height: verticalPadding * 0.6),
           Text(
             title,
             style: TextStyle(
-              fontSize: size.width * 0.03,
+              fontSize: size.width * 0.06,
               fontWeight: FontWeight.bold,
-              color: AppColors.textColor,  // Usando a cor de texto
-              letterSpacing: 1.2,
-              shadows: [
+              color: AppColors.textColor,
+              letterSpacing: 1.5,
+              shadows: const [
                 Shadow(
-                  color: AppColors.shadowColor,  // Usando a cor de sombra
-                  offset: const Offset(0, 1),
+                  color: AppColors.shadowColor,
+                  offset: Offset(0, 1),
                   blurRadius: 2,
                 ),
               ],
             ),
           ),
-          SizedBox(height: verticalPadding * 0.05),
+          SizedBox(height: verticalPadding),
         ],
       ),
     );

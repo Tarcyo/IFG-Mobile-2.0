@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/styles/colors.dart';
 
-class ScreenHeader extends StatelessWidget {
-  final String title;
-  final VoidCallback onBack;
+class CustomHeader extends StatelessWidget {
   final double verticalPadding;
+  final Size size;
 
-  const ScreenHeader({
+  const CustomHeader({
     Key? key,
-    required this.title,
-    required this.onBack,
     required this.verticalPadding,
+    required this.size,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final screenWidth = size.width;
 
-    // Responsividade proporcional
-    final double iconSize = size.width * 0.065;
-    final double horizontalPadding = size.width * 0.04;
-    final double spacing = size.width * 0.03;
-    final double fakeRightSpace = size.width * 0.13;
-    final double titleFontSize = size.width * 0.06;
-    final double shadowBlur = size.width * 0.008;
+    // 📐 Mesmas proporções do ScreenHeader original
+    final double horizontalPadding = screenWidth * 0.04;
+    final double iconSize = screenWidth * 0.065;
+    final double titleFontSize = screenWidth * 0.06;
+    final double shadowBlur = screenWidth * 0.008;
+    final double spacing = screenWidth * 0.03;
+    final double fakeRightSpace = screenWidth * 0.13;
 
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -32,16 +30,15 @@ class ScreenHeader extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // Botão de voltar com fundo circular e sombra
           Container(
             decoration: BoxDecoration(
-              color: AppColors.textColor.withAlpha(25), // alpha ~0.1
+              color: Colors.white.withOpacity(0.1),
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
                   color: AppColors.shadowColor,
                   blurRadius: shadowBlur,
-                  offset: Offset(iconSize * 0.07, iconSize * 0.07),
+                  offset: Offset(shadowBlur, shadowBlur),
                 ),
               ],
             ),
@@ -49,19 +46,16 @@ class ScreenHeader extends StatelessWidget {
               iconSize: iconSize,
               icon: Icon(
                 Icons.arrow_back,
-                color: AppColors.textColor,
+                color: Colors.white,
                 size: iconSize,
               ),
-              onPressed: onBack,
+              onPressed: () => Navigator.of(context).pop(),
             ),
           ),
-
           SizedBox(width: spacing),
-
-          // Título centralizado
           Expanded(
             child: Text(
-              title,
+              'Carteira do Estudante',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: AppColors.textColor,
@@ -70,15 +64,13 @@ class ScreenHeader extends StatelessWidget {
                 shadows: [
                   Shadow(
                     blurRadius: shadowBlur * 1.5,
-                    color: AppColors.shadowColor,
+                    color: Colors.black38,
                     offset: Offset(shadowBlur, shadowBlur),
                   ),
                 ],
               ),
             ),
           ),
-
-          // Espaço invisível para balancear o Row
           SizedBox(width: fakeRightSpace),
         ],
       ),

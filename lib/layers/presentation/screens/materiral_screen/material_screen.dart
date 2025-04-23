@@ -132,9 +132,7 @@ class _MaterialScreenState extends State<MaterialScreen> {
               ScreenHeader(
                 title: 'Materiais Escolares',
                 onBack: () => Navigator.of(context).pop(),
-                horizontalPadding: size.width * 0.04,
                 verticalPadding: verticalPadding,
-                fontSize: size.width * 0.055,
               ),
               // Seletor de disciplinas
               _buildDisciplineSelector(),

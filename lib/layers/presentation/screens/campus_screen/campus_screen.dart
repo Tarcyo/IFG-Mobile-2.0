@@ -247,6 +247,7 @@ class _CampusScreenState extends State<CampusScreen> {
                                   Icon(
                                     Icons.public,
                                     color: AppColors.textColor,
+                             size: size.height * 0.04
                                   ),
                                   const SizedBox(width: 8),
                                   Text(

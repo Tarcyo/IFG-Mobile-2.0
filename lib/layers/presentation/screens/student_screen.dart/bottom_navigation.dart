@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ifg_mobile_estudante/layers/presentation/screens/student_card/carteirinhaEstudanteScreen.dart';
+import 'package:ifg_mobile_estudante/layers/presentation/screens/student_card/carteirinha_Estudante_Screen.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/styles/colors.dart';
 import 'button_painter.dart';
 
@@ -15,6 +15,22 @@ class BottomNavigation extends StatelessWidget {
     required this.verticalPadding,
   }) : super(key: key);
 
+  void fadePush(BuildContext context, Widget page) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 350),
+        pageBuilder: (_, animation, __) => page,
+        transitionsBuilder: (_, animation, __, child) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,12 +40,7 @@ class BottomNavigation extends StatelessWidget {
         vertical: verticalPadding,
       ),
       child: GestureDetector(
-        onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const CarteirinhaEstudanteScreen(),
-          ),
-        ),
+        onTap: () => fadePush(context, const CarteirinhaEstudanteScreen()),
         child: Container(
           height: size.height * 0.07,
           decoration: BoxDecoration(
@@ -41,7 +52,7 @@ class BottomNavigation extends StatelessWidget {
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withValues(alpha: 0.2),
+                color: Colors.black.withAlpha(50),
                 blurRadius: 8,
                 offset: const Offset(2, 2),
               ),

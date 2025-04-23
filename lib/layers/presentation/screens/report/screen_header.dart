@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/styles/colors.dart';
 
-class ScreenHeader extends StatelessWidget {
-  final String title;
+class HeaderWidget extends StatelessWidget {
   final VoidCallback onBack;
-  final double verticalPadding;
 
-  const ScreenHeader({
+  const HeaderWidget({
     Key? key,
-    required this.title,
     required this.onBack,
-    required this.verticalPadding,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final screenWidth = size.width;
 
-    // Responsividade proporcional
-    final double iconSize = size.width * 0.065;
-    final double horizontalPadding = size.width * 0.04;
-    final double spacing = size.width * 0.03;
-    final double fakeRightSpace = size.width * 0.13;
-    final double titleFontSize = size.width * 0.06;
-    final double shadowBlur = size.width * 0.008;
+    // 🎯 Proporções baseadas no ScreenHeader
+    final double horizontalPadding = screenWidth * 0.04;
+    final double verticalPadding = screenWidth * 0.04; // mantido o padrão proporcional à largura
+    final double iconSize = screenWidth * 0.065;
+    final double spacingAfterIcon = screenWidth * 0.03;
+    final double spacingEnd = screenWidth * 0.13;
+    final double titleFontSize = screenWidth * 0.06;
+    final double shadowBlur = screenWidth * 0.008;
 
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -32,10 +30,10 @@ class ScreenHeader extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // Botão de voltar com fundo circular e sombra
+          // 🔙 Botão de voltar com mesmo estilo do ScreenHeader
           Container(
             decoration: BoxDecoration(
-              color: AppColors.textColor.withAlpha(25), // alpha ~0.1
+              color: AppColors.textColor.withAlpha(25), // equivalente a ~10% de opacidade
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
@@ -55,13 +53,12 @@ class ScreenHeader extends StatelessWidget {
               onPressed: onBack,
             ),
           ),
+          SizedBox(width: spacingAfterIcon),
 
-          SizedBox(width: spacing),
-
-          // Título centralizado
+          // 🏫 Título centralizado com mesmo estilo
           Expanded(
             child: Text(
-              title,
+              'Boletim Escolar',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: AppColors.textColor,
@@ -78,8 +75,8 @@ class ScreenHeader extends StatelessWidget {
             ),
           ),
 
-          // Espaço invisível para balancear o Row
-          SizedBox(width: fakeRightSpace),
+          // Espaço para balancear visualmente
+          SizedBox(width: spacingEnd),
         ],
       ),
     );

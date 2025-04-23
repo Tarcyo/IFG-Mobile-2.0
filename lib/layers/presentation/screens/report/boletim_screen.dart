@@ -3,6 +3,7 @@ import 'package:ifg_mobile_estudante/core/utils/scroll_hint_banner.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/screens/report/subject_card_widget.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/screens/report/year_selector.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/styles/colors.dart';
+import 'screen_header.dart';
 
 class BoletimScreen extends StatefulWidget {
   const BoletimScreen({Key? key}) : super(key: key);
@@ -12,8 +13,7 @@ class BoletimScreen extends StatefulWidget {
 }
 
 class _BoletimScreenState extends State<BoletimScreen> {
-  // Dados simulados: cada ano contém uma lista de matérias com seus respectivos dados.
-  final Map<String, List<Map<String, String>>> reportData = {
+    final Map<String, List<Map<String, String>>> reportData = {
     '2023': [
       {
         'subject': 'Matemática',
@@ -80,14 +80,10 @@ class _BoletimScreenState extends State<BoletimScreen> {
   void initState() {
     super.initState();
     _selectedYear = reportData.keys.first;
-
-    // Detecta se o conteúdo é rolável para exibir o banner de indicação de scroll.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_gradesScrollController.hasClients &&
           _gradesScrollController.position.maxScrollExtent > 0) {
-        setState(() {
-          _showScrollHint = true;
-        });
+        setState(() => _showScrollHint = true);
       }
     });
     _gradesScrollController.addListener(() {
@@ -95,9 +91,7 @@ class _BoletimScreenState extends State<BoletimScreen> {
         final isAtBottom =
             _gradesScrollController.offset >=
             _gradesScrollController.position.maxScrollExtent;
-        setState(() {
-          _showScrollHint = !isAtBottom;
-        });
+        setState(() => _showScrollHint = !isAtBottom);
       }
     });
   }
@@ -110,8 +104,6 @@ class _BoletimScreenState extends State<BoletimScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final double verticalPadding = size.height * 0.025;
     final subjects = reportData[_selectedYear] ?? [];
 
     return Scaffold(
@@ -128,82 +120,25 @@ class _BoletimScreenState extends State<BoletimScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              // Cabeçalho com botão de voltar e título centralizado.
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: size.width * 0.04,
-                  vertical: verticalPadding,
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.textColor.withValues(alpha: 0.1),
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.shadowColor,
-                            blurRadius: 4,
-                            offset: const Offset(2, 2),
-                          ),
-                        ],
-                      ),
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.arrow_back,
-                          color: AppColors.textColor,
-                        ),
-                        onPressed: () => Navigator.of(context).pop(),
-                      ),
-                    ),
-                    SizedBox(width: size.width * 0.03),
-                    Expanded(
-                      child: Text(
-                        'Boletim Escolar',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: AppColors.textColor,
-                          fontSize: size.width * 0.055,
-                          fontWeight: FontWeight.bold,
-                          shadows: [
-                            Shadow(
-                              blurRadius: 3,
-                              color: AppColors.shadowColor,
-                              offset: const Offset(1, 1),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: size.width * 0.13),
-                  ],
-                ),
-              ),
-              // Seletor de ano
+              HeaderWidget(onBack: () => Navigator.of(context).pop()),
               YearSelector(
                 years: reportData.keys.toList(),
                 selectedYear: _selectedYear,
-                onYearSelected: (year) {
-                  setState(() {
-                    _selectedYear = year;
-                  });
-                },
+                onYearSelected: (year) => setState(() => _selectedYear = year),
               ),
-              const SizedBox(height: 6),
-              // Área de conteúdo rolável com indicação de scroll.
+              SizedBox(height: 6),
               Expanded(
                 child: Stack(
                   children: [
                     AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 300),
-                      transitionBuilder:
-                          (child, animation) =>
-                              FadeTransition(opacity: animation, child: child),
+                      duration: Duration(milliseconds: 300),
+                      transitionBuilder: (child, animation) =>
+                          FadeTransition(opacity: animation, child: child),
                       child: ListView.builder(
                         key: ValueKey(_selectedYear),
                         controller: _gradesScrollController,
                         itemCount: subjects.length,
-                        padding: const EdgeInsets.only(top: 16, bottom: 16),
+                        padding: EdgeInsets.only(top: 16, bottom: 16),
                         itemBuilder: (context, index) {
                           return SubjectCard(subjectData: subjects[index]);
                         },
@@ -216,11 +151,7 @@ class _BoletimScreenState extends State<BoletimScreen> {
                         right: 0,
                         child: Center(
                           child: ScrollHintBanner(
-                            onDismissed: () {
-                              setState(() {
-                                _bannerDismissed = true;
-                              });
-                            },
+                            onDismissed: () => setState(() => _bannerDismissed = true),
                           ),
                         ),
                       ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/providers/aluno_entity_controller_provider.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/providers/notas_list_controller_provider.dart';
 import 'package:ifg_mobile_estudante/core/utils/scroll_hint_banner.dart';
-import 'package:ifg_mobile_estudante/layers/presentation/screens/hor%C3%A1rio_de_aula_screen/hor%C3%A1rio_de_aula.dart';
+import 'package:ifg_mobile_estudante/layers/presentation/screens/horário_de_aula_screen/horário_de_aula.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/screens/grade_screen/gradesScreen.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/screens/report/boletim_screen.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/screens/materiral_screen/material_screen.dart';
@@ -26,21 +26,31 @@ class MenuGrid extends StatelessWidget {
     required this.onBannerDismissed,
   }) : super(key: key);
 
+  void fadePush(BuildContext context, Widget page) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 350),
+        pageBuilder: (_, animation, __) => page,
+        transitionsBuilder: (_, animation, __, child) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final double horizontalPadding = size.width * 0.04;
 
-    // Definindo os itens do menu utilizando o context atual.
     final List<Map<String, dynamic>> menuItems = [
       {
         'label': 'Horário de Aula',
         'icon': Icons.schedule_rounded,
-        'onTap': () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const HorarioDeAulaScreen(),
-              ),
-            ),
+        'onTap': () => fadePush(context, const HorarioDeAulaScreen()),
       },
       {
         'label': 'Minhas Notas',
@@ -141,7 +151,6 @@ class MenuGrid extends StatelessWidget {
                           child: Text(
                             "Ok",
                             style: TextStyle(
-                              // Alteração para garantir contraste: texto com cor definida no AppColors.
                               color: AppColors.solidBackgroundColor,
                               fontSize: size.width * 0.032,
                             ),
@@ -154,28 +163,19 @@ class MenuGrid extends StatelessWidget {
               },
             );
           } else {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => GradesScreen()),
-            );
+            fadePush(context, GradesScreen());
           }
         },
       },
       {
         'label': 'Meu Boletim',
         'icon': Icons.receipt_long_rounded,
-        'onTap': () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const BoletimScreen()),
-            ),
+        'onTap': () => fadePush(context, const BoletimScreen()),
       },
       {
         'label': 'Material de Aula',
         'icon': Icons.menu_book_rounded,
-        'onTap': () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => MaterialScreen()),
-            ),
+        'onTap': () => fadePush(context, MaterialScreen()),
       },
     ];
 

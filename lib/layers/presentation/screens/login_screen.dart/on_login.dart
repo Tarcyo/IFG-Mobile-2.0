@@ -13,7 +13,7 @@ void onLogin(
   storage,
   autoLogin,
 ) async {
-  print("auto login? "+autoLogin.toString());
+  print("auto login? " + autoLogin.toString());
   print("AAAAAAAAAAAAAAA");
   if (matriculaController.text.isEmpty) {
     return;
@@ -40,7 +40,9 @@ void onLogin(
               height: screenHeight * 0.06,
               child: CircularProgressIndicator(
                 strokeWidth: screenHeight * 0.01, // Espessura da linha
-                valueColor: AlwaysStoppedAnimation<Color>(AppColors.textColor), // Cor da progress indicator
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  AppColors.textColor,
+                ), // Cor da progress indicator
               ),
             ),
           ],
@@ -80,7 +82,8 @@ void onLogin(
           content: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: AppColors.mainGradientColors, // Usando gradiente de cores
+                colors:
+                    AppColors.mainGradientColors, // Usando gradiente de cores
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
               ),
@@ -112,7 +115,8 @@ void onLogin(
                 Text(
                   "Falha ao tentar conectar.\nVerifique seus dados e tente novamente.",
                   style: TextStyle(
-                    color: AppColors.descriptionColor, // Cor do texto secundário
+                    color:
+                        AppColors.descriptionColor, // Cor do texto secundário
                     fontSize: screenWidth * 0.032,
                   ),
                   textAlign: TextAlign.center,
@@ -121,7 +125,8 @@ void onLogin(
                 // Botão "Ok"
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.solidBackgroundColor, // Cor do fundo do botão
+                    backgroundColor:
+                        AppColors.solidBackgroundColor, // Cor do fundo do botão
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(180.0),
                     ),
@@ -147,7 +152,14 @@ void onLogin(
   } else {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const AlunoScreen()),
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 350),
+        pageBuilder:
+            (context, animation, secondaryAnimation) => const AlunoScreen(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return FadeTransition(opacity: animation, child: child);
+        },
+      ),
     );
   }
 }
