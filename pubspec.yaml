@@ -7,14 +7,25 @@ environment:
   sdk:  ^	3.7.2
 
 dev_dependencies:
-  flutter_native_splash: ^2.3.0
-
+  flutter_native_splash: ^2.3.1
 flutter_native_splash:
-  color: "#ffffff" # Cor de fundo
-  image: assets/splash2.png # Caminho da sua imagem
-  android: true
-  android_gravity: center
+  # cor de fundo para Android < 12 e iOS
+  color: "#ffffff"
+  # imagem principal centralizada
+  branding: assets/splash2.png
 
+
+  # configuração específica para Android 12+
+  android_12:
+    # imagem que será usada pelo SplashScreen API
+    # cor de fundo por trás do ícone no Android 12
+    icon_background_color: "#ffffff"
+    branding: assets/splash2.png
+
+  # “branding” fica abaixo da image principal
+
+
+    
 dependencies:
   flutter:
     sdk: flutter
@@ -24,6 +35,7 @@ dependencies:
   provider: ^6.1.4
   get_it: ^8.0.3
   flutter_dotenv: ^5.2.1
+  
 
 flutter:
   uses-material-design: true
