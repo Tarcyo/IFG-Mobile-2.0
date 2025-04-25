@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/styles/colors.dart';
-
 class MenuItem extends StatelessWidget {
   final String label;
   final IconData icon;
@@ -42,7 +41,6 @@ class MenuItem extends StatelessWidget {
           ),
           child: Stack(
             children: [
-              // CustomPainter para efeito extra no botão.
               CustomPaint(
                 size: Size(double.infinity, double.infinity),
                 painter: ButtonPainter(),

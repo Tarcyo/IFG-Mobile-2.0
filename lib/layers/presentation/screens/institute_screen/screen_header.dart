@@ -22,6 +22,9 @@ class ScreenHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final double titleFontSize = size.width * 0.06;
+    final double shadowBlur = size.width * 0.01;
+
     return Padding(
       padding: EdgeInsets.symmetric(vertical: verticalPadding),
       child: Column(
@@ -51,16 +54,16 @@ class ScreenHeader extends StatelessWidget {
           SizedBox(height: verticalPadding * 0.6),
           Text(
             title,
+            textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: size.width * 0.06,
-              fontWeight: FontWeight.bold,
               color: AppColors.textColor,
-              letterSpacing: 1.5,
-              shadows: const [
+              fontSize: titleFontSize,
+              fontWeight: FontWeight.bold,
+              shadows: [
                 Shadow(
+                  blurRadius: shadowBlur * 1.5,
                   color: AppColors.shadowColor,
-                  offset: Offset(0, 1),
-                  blurRadius: 2,
+                  offset: Offset(shadowBlur, shadowBlur),
                 ),
               ],
             ),

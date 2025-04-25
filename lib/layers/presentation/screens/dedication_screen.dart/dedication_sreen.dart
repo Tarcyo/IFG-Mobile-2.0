@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ifg_mobile_estudante/core/utils/scroll_hint_banner.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/screens/dedication_screen.dart/dedication_footer.dart';
-import 'package:ifg_mobile_estudante/layers/presentation/screens/dedication_screen.dart/dedication_header.dart';
+import 'package:ifg_mobile_estudante/layers/presentation/screens/dedication_screen.dart/screen_header.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/styles/colors.dart'; // Importa o AppColors
 
 class DedicationScreen extends StatefulWidget {
@@ -58,7 +58,7 @@ class _DedicationScreenState extends State<DedicationScreen> {
     final double fontSize = size.width * 0.03;
 
     return Scaffold(
-      backgroundColor: AppColors.solidBackgroundColor,
+      backgroundColor: AppColors.screenBackgroundGradient.first,
       body: SafeArea(
         child: Container(
           width: size.width,

@@ -31,7 +31,7 @@ void onLogin(
             Text(
               "Carregando...",
               style: TextStyle(
-                color: AppColors.textColor, // Cor do texto
+                color: AppColors.textColor, 
                 fontSize: screenHeight * 0.035,
               ),
             ),
@@ -39,10 +39,10 @@ void onLogin(
               width: screenHeight * 0.06,
               height: screenHeight * 0.06,
               child: CircularProgressIndicator(
-                strokeWidth: screenHeight * 0.01, // Espessura da linha
+                strokeWidth: screenHeight * 0.01, 
                 valueColor: AlwaysStoppedAnimation<Color>(
                   AppColors.textColor,
-                ), // Cor da progress indicator
+                ), 
               ),
             ),
           ],
@@ -83,14 +83,14 @@ void onLogin(
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors:
-                    AppColors.mainGradientColors, // Usando gradiente de cores
+                    AppColors.mainGradientColors, 
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
               ),
               borderRadius: BorderRadius.circular(32.0),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.shadowColor, // Cor da sombra
+                  color: AppColors.shadowColor, 
                   blurRadius: 10,
                   offset: const Offset(4, 4),
                 ),
@@ -100,33 +100,30 @@ void onLogin(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Título
                 Text(
                   "Atenção",
                   style: TextStyle(
                     fontSize: screenWidth * 0.055,
                     fontWeight: FontWeight.bold,
-                    color: AppColors.textColor, // Cor do texto
+                    color: AppColors.textColor,
                   ),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: screenHeight * 0.02),
-                // Mensagem de erro
                 Text(
                   "Falha ao tentar conectar.\nVerifique seus dados e tente novamente.",
                   style: TextStyle(
                     color:
-                        AppColors.descriptionColor, // Cor do texto secundário
+                        AppColors.descriptionColor, 
                     fontSize: screenWidth * 0.032,
                   ),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: screenHeight * 0.03),
-                // Botão "Ok"
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
-                        AppColors.solidBackgroundColor, // Cor do fundo do botão
+                        AppColors.solidBackgroundColor, 
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(180.0),
                     ),
@@ -137,7 +134,7 @@ void onLogin(
                   child: Text(
                     "Ok",
                     style: TextStyle(
-                      color: AppColors.textColor, // Cor do texto do botão
+                      color: AppColors.textColor,
                       fontSize: screenWidth * 0.032,
                       fontWeight: FontWeight.bold,
                     ),

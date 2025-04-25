@@ -38,7 +38,6 @@ class SubjectCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Nome da disciplina com ícone.
           Row(
             children: [
               Icon(
@@ -60,7 +59,6 @@ class SubjectCard extends StatelessWidget {
             ],
           ),
           SizedBox(height: spacing),
-          // Nome do professor.
           Row(
             children: [
               Icon(
@@ -81,7 +79,6 @@ class SubjectCard extends StatelessWidget {
             ],
           ),
           SizedBox(height: spacing),
-          // Situação na disciplina.
           Row(
             children: [
               Icon(
@@ -102,12 +99,11 @@ class SubjectCard extends StatelessWidget {
             ],
           ),
           SizedBox(height: spacing),
-          // Média final.
           Row(
             children: [
               Icon(
                 Icons.grade,
-                color: Colors.amber, // Caso deseje padronizar, crie uma propriedade em AppColors
+                color: Colors.amber,
                 size: size.width * 0.05,
               ),
               SizedBox(width: spacing),

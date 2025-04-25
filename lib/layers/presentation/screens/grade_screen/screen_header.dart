@@ -26,7 +26,6 @@ class ScreenHeader extends StatelessWidget {
     final screenWidth = size.width;
     final screenHeight = size.height;
 
-    // 📐 Proporções baseadas no ScreenHeader original
     final double horizontalPadding = screenWidth * 0.04;
     final double iconSize = screenWidth * 0.065;
     final double titleFontSize = screenWidth * 0.06;
@@ -34,7 +33,6 @@ class ScreenHeader extends StatelessWidget {
     final double spacing = screenWidth * 0.03;
     final double fakeRightSpace = screenWidth * 0.13;
 
-    // Dropdown específico
     final double dropdownFontSize = screenWidth * 0.03;
     final double dropdownRadius = screenWidth * 0.02;
     final double dropdownPadding = screenHeight * 0.018;
@@ -42,7 +40,6 @@ class ScreenHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        // 🔹 Cabeçalho com botão e título
         Padding(
           padding: EdgeInsets.symmetric(
             vertical: verticalPadding,
@@ -50,7 +47,6 @@ class ScreenHeader extends StatelessWidget {
           ),
           child: Row(
             children: [
-              // 🔙 Botão de voltar
               Container(
                 decoration: BoxDecoration(
                   color: AppColors.textColor.withAlpha(25),
@@ -103,7 +99,6 @@ class ScreenHeader extends StatelessWidget {
           ),
         ),
 
-        // 🔻 Dropdown com gradiente
         Padding(
           padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
           child: DecoratedBox(

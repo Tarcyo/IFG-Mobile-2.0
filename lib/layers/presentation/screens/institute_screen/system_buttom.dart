@@ -26,15 +26,15 @@ class SystemButton extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: AppColors.mainGradientColors,  // Usando o gradiente definido no AppColors
+            colors: AppColors.mainGradientColors,  
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: AppColors.textColor, width: 2),  // Cor da borda ajustada para textColor
+          border: Border.all(color: AppColors.textColor, width: 2),  
           boxShadow: [
             BoxShadow(
-              color: AppColors.shadowColor,  // Usando a cor de sombra definida
+              color: AppColors.shadowColor, 
               offset: const Offset(0, 2),
               blurRadius: 4,
             ),
@@ -46,10 +46,10 @@ class SystemButton extends StatelessWidget {
             Icon(
               icon,
               size: size.width * 0.08,
-              color: AppColors.textColor,  // Usando a cor do texto para o ícone
+              color: AppColors.textColor,  
               shadows: [
                 Shadow(
-                  color: AppColors.shadowColor,  // Sombra do ícone
+                  color: AppColors.shadowColor,  
                   offset: const Offset(1, 1),
                   blurRadius: 1,
                 ),
@@ -62,10 +62,10 @@ class SystemButton extends StatelessWidget {
               style: TextStyle(
                 fontSize: size.width * 0.03,
                 fontWeight: FontWeight.bold,
-                color: AppColors.textColor,  // Usando a cor de texto definida
+                color: AppColors.textColor,  
                 shadows: [
                   Shadow(
-                    color: AppColors.shadowColor,  // Sombra do texto
+                    color: AppColors.shadowColor,
                     offset: const Offset(0.5, 0.5),
                     blurRadius: 1,
                   ),

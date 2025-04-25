@@ -57,7 +57,7 @@ class CardBase extends StatelessWidget {
                 top: size.height * 0.035,
                 right: size.width * 0.045,
                 child: Image.asset(
-                  'assets/images/logo B.png', // Substitua pelo caminho correto da sua imagem
+                  'assets/images/logo B.png', 
                   width: size.width * 0.26,
                   height: size.width * 0.26,
                   color: AppColors.textColor,

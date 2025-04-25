@@ -58,7 +58,7 @@ class _MenuItemState extends State<MenuItem> {
                     style: TextStyle(
                       fontSize: size.width * 0.03,
                       fontWeight: FontWeight.bold,
-                      color: AppColors.textColor, // Usando a cor de texto
+                      color: AppColors.textColor, 
                       shadows: const [
                         Shadow(
                           color: Colors.black26,
@@ -91,7 +91,7 @@ class MenuItemPainter extends CustomPainter {
         Paint()
           ..color =
               AppColors
-                  .shadowColor // Usando a cor de sombra definida
+                  .shadowColor 
           ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4);
     canvas.drawRRect(
       RRect.fromRectAndRadius(
@@ -105,7 +105,7 @@ class MenuItemPainter extends CustomPainter {
         Paint()
           ..shader = LinearGradient(
             colors:
-                AppColors.mainGradientColors, // Usando o gradiente das cores
+                AppColors.mainGradientColors, 
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ).createShader(rect);
@@ -118,7 +118,7 @@ class MenuItemPainter extends CustomPainter {
         Paint()
           ..color = AppColors.textColor.withValues(
             alpha: 0.85,
-          ) // Usando a cor de texto
+          )
           ..style = PaintingStyle.stroke
           ..strokeWidth = 1.5;
     canvas.drawRRect(

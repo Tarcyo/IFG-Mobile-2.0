@@ -7,7 +7,8 @@ import 'package:ifg_mobile_estudante/layers/presentation/screens/campus_screen/c
 import 'package:ifg_mobile_estudante/layers/presentation/styles/colors.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
-import 'screen_hader.dart';
+import 'screen_header.dart';
+
 class AllCampiScreen extends StatelessWidget {
   const AllCampiScreen({super.key});
 
@@ -42,7 +43,7 @@ class __AllCampiViewState extends State<_AllCampiView> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: AppColors.solidBackgroundColor,
+      backgroundColor: AppColors.screenBackgroundGradient.first,
       body: Container(
         decoration: _buildBackgroundDecoration(),
         child: SafeArea(
@@ -82,8 +83,6 @@ class __AllCampiViewState extends State<_AllCampiView> {
     );
   }
 
-
-
   Widget _buildCampusGrid(Size size) {
     const campusList = [
       'Águas Lindas',
@@ -91,15 +90,15 @@ class __AllCampiViewState extends State<_AllCampiView> {
       'Aparecida',
       'Formosa',
       'Goiânia',
-      'Goiânia Oeste',
       'Goiás',
       'Inhumas',
       'Itumbiara',
       'Jataí',
       'Luziânia',
-      'Senador Canedo',
       'Uruaçu',
       'Valparaíso',
+      'Goiânia Oeste',
+      'Senador Canedo',
     ];
 
     return LayoutBuilder(

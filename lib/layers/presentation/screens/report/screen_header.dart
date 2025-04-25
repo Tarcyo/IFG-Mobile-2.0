@@ -14,9 +14,8 @@ class HeaderWidget extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final screenWidth = size.width;
 
-    // 🎯 Proporções baseadas no ScreenHeader
     final double horizontalPadding = screenWidth * 0.04;
-    final double verticalPadding = screenWidth * 0.04; // mantido o padrão proporcional à largura
+    final double verticalPadding = screenWidth * 0.04;
     final double iconSize = screenWidth * 0.065;
     final double spacingAfterIcon = screenWidth * 0.03;
     final double spacingEnd = screenWidth * 0.13;
@@ -30,10 +29,9 @@ class HeaderWidget extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // 🔙 Botão de voltar com mesmo estilo do ScreenHeader
           Container(
             decoration: BoxDecoration(
-              color: AppColors.textColor.withAlpha(25), // equivalente a ~10% de opacidade
+              color: AppColors.textColor.withAlpha(25), 
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
@@ -55,7 +53,6 @@ class HeaderWidget extends StatelessWidget {
           ),
           SizedBox(width: spacingAfterIcon),
 
-          // 🏫 Título centralizado com mesmo estilo
           Expanded(
             child: Text(
               'Boletim Escolar',
@@ -75,7 +72,6 @@ class HeaderWidget extends StatelessWidget {
             ),
           ),
 
-          // Espaço para balancear visualmente
           SizedBox(width: spacingEnd),
         ],
       ),

@@ -64,9 +64,7 @@ class _CarteirinhaEstudanteScreenState extends State<CarteirinhaEstudanteScreen>
         child: SafeArea(
           child: Column(
             children: [
-              // Cabeçalho com botão de voltar e título
               CustomHeader(verticalPadding: verticalPadding, size: size),
-              // Corpo com o cartão animado
               Expanded(
                 child: Center(
                   child: GestureDetector(
@@ -96,7 +94,6 @@ class _CarteirinhaEstudanteScreenState extends State<CarteirinhaEstudanteScreen>
                   ),
                 ),
               ),
-              // Instrução de toque
               Padding(
                 padding: EdgeInsets.only(bottom: verticalPadding),
                 child: Row(

@@ -12,6 +12,7 @@ class AppColors {
   static const List<Color> screenBackgroundGradient = [
     Color(0xFF00695C),
     Color(0xFF388E3C),
+    Color(0xFF4CAF50),
   ];
 
   static const List<Color> tabBarGradient = [

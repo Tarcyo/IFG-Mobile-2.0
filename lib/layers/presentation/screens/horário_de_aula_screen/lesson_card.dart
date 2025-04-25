@@ -42,7 +42,6 @@ class LessonCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Linha superior: horário e local
           Row(
             children: [
               Icon(Icons.access_time, color: AppColors.descriptionColor, size: iconSize),

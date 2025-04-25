@@ -13,7 +13,6 @@ class MaterialScreen extends StatefulWidget {
 }
 
 class _MaterialScreenState extends State<MaterialScreen> {
-  // Dados simulados: cada disciplina possui uma lista de materiais
   final Map<String, List<Map<String, String>>> materialsData = {
     'Matemática': [
       {
@@ -67,7 +66,6 @@ class _MaterialScreenState extends State<MaterialScreen> {
     super.initState();
     _selectedDiscipline = materialsData.keys.first;
 
-    // Verifica se há conteúdo rolável para mostrar o banner
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_scrollController.hasClients &&
           _scrollController.position.maxScrollExtent > 0) {
@@ -94,7 +92,6 @@ class _MaterialScreenState extends State<MaterialScreen> {
     super.dispose();
   }
 
-  // Constrói a lista de ChoiceChips para selecionar a disciplina
   Widget _buildDisciplineSelector() {
     return DisciplineSelector(
       disciplines: materialsData.keys.toList(),
@@ -102,7 +99,6 @@ class _MaterialScreenState extends State<MaterialScreen> {
       onDisciplineSelected: (discipline) {
         setState(() {
           _selectedDiscipline = discipline;
-          // O banner não é reiniciado se já tiver sido dismissado
         });
       },
     );
@@ -128,16 +124,13 @@ class _MaterialScreenState extends State<MaterialScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              // Cabeçalho com botão de voltar e título
               ScreenHeader(
                 title: 'Materiais Escolares',
                 onBack: () => Navigator.of(context).pop(),
                 verticalPadding: verticalPadding,
               ),
-              // Seletor de disciplinas
               _buildDisciplineSelector(),
               const SizedBox(height: 6),
-              // Lista dos materiais
               Expanded(
                 child: Stack(
                   children: [

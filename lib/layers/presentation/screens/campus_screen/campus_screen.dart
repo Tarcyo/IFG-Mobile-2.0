@@ -4,12 +4,13 @@ import 'package:ifg_mobile_estudante/core/utils/url_launcher_helper.dart';
 import 'package:ifg_mobile_estudante/core/utils/scroll_hint_banner.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/styles/colors.dart';
 import 'menu_item_button.dart';
+import 'screen_header.dart';
 
 class CampusScreen extends StatefulWidget {
   final Map<String, dynamic> dados;
   final String name;
   const CampusScreen({required this.name, required this.dados, Key? key})
-      : super(key: key);
+    : super(key: key);
 
   @override
   State<CampusScreen> createState() => _CampusScreenState();
@@ -18,40 +19,44 @@ class CampusScreen extends StatefulWidget {
 class _CampusScreenState extends State<CampusScreen> {
   final ScrollController _scrollController = ScrollController();
   bool _showScrollArrow = false;
-  bool _bannerDismissed = false; // Flag para exibir o banner apenas uma vez
+  bool _bannerDismissed = false; 
 
   List<Map<String, dynamic>> get menuItems => [
-        {
-          'label': 'Telefones',
-          'icon': Icons.phone_rounded,
-          'onTap': () async => await openWebPage(
-                'http://www.ifg.edu.br/' +
-                    removerAcentosParaUrl(widget.name) +
-                    "/contato",
-              ),
-        },
-        {
-          'label': 'Localização',
-          'icon': Icons.location_on_rounded,
-          'onTap': () async => await openWebPage(
-                widget.dados['campus'][widget.name]['localização'],
-              ),
-        },
-        {
-          'label': 'Facebook',
-          'icon': Icons.facebook,
-          'onTap': () async => await openWebPage(
-                widget.dados['campus'][widget.name]['facebook'],
-              ),
-        },
-        {
-          'label': 'Instagram',
-          'icon': Icons.camera_alt_rounded,
-          'onTap': () async => await openWebPage(
-                widget.dados['campus'][widget.name]['instagram'],
-              ),
-        },
-      ];
+    {
+      'label': 'Telefones',
+      'icon': Icons.phone_rounded,
+      'onTap':
+          () async => await openWebPage(
+            'http://www.ifg.edu.br/' +
+                removerAcentosParaUrl(widget.name) +
+                "/contato",
+          ),
+    },
+    {
+      'label': 'Localização',
+      'icon': Icons.location_on_rounded,
+      'onTap':
+          () async => await openWebPage(
+            widget.dados['campus'][widget.name]['localização'],
+          ),
+    },
+    {
+      'label': 'Facebook',
+      'icon': Icons.facebook,
+      'onTap':
+          () async => await openWebPage(
+            widget.dados['campus'][widget.name]['facebook'],
+          ),
+    },
+    {
+      'label': 'Instagram',
+      'icon': Icons.camera_alt_rounded,
+      'onTap':
+          () async => await openWebPage(
+            widget.dados['campus'][widget.name]['instagram'],
+          ),
+    },
+  ];
 
   @override
   void initState() {
@@ -98,38 +103,8 @@ class _CampusScreenState extends State<CampusScreen> {
             children: [
               Column(
                 children: [
-                  // Cabeçalho com botão de voltar e título centralizado.
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: padding,
-                      vertical: padding * 0.5,
-                    ),
-                    child: Row(
-                      children: [
-                        IconButton(
-                          icon: Icon(
-                            Icons.arrow_back_rounded,
-                            color: AppColors.textColor,
-                            size: size.width * 0.065,
-                          ),
-                          onPressed: () => Navigator.pop(context),
-                        ),
-                        Expanded(
-                          child: Text(
-                            widget.name,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: AppColors.textColor,
-                              fontSize: size.width * 0.055,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: size.width * 0.065),
-                      ],
-                    ),
-                  ),
-                  // Conteúdo principal com imagem, descrição e grid de opções.
+                  CustomAppBar(title: widget.name),
+
                   Expanded(
                     child: SingleChildScrollView(
                       controller: _scrollController,
@@ -142,7 +117,6 @@ class _CampusScreenState extends State<CampusScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          // Imagem e descrição do campus.
                           ClipRRect(
                             borderRadius: BorderRadius.circular(12),
                             child: Container(
@@ -171,13 +145,16 @@ class _CampusScreenState extends State<CampusScreen> {
                                   Padding(
                                     padding: EdgeInsets.all(padding * 0.8),
                                     child: Text(
-                                      widget.dados['campus'][widget.name]
-                                          ['descrição'],
+                                      widget.dados['campus'][widget
+                                          .name]['descrição'],
+                                            textAlign: TextAlign.start,  
+
                                       style: TextStyle(
                                         fontFamily: "Roboto",
                                         fontStyle: FontStyle.italic,
                                         fontSize: size.width * 0.035,
                                         color: AppColors.textColor,
+                                        
                                         height: 1.6,
                                         shadows: const [
                                           Shadow(
@@ -187,7 +164,6 @@ class _CampusScreenState extends State<CampusScreen> {
                                           ),
                                         ],
                                       ),
-                                      textAlign: TextAlign.justify,
                                     ),
                                   ),
                                 ],
@@ -195,7 +171,6 @@ class _CampusScreenState extends State<CampusScreen> {
                             ),
                           ),
                           const SizedBox(height: 20),
-                          // Grid de opções (menuItems)
                           GridView.count(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
@@ -203,16 +178,16 @@ class _CampusScreenState extends State<CampusScreen> {
                             mainAxisSpacing: padding,
                             crossAxisSpacing: padding,
                             childAspectRatio: 1.0,
-                            children: menuItems.map((item) {
-                              return MenuItem(
-                                label: item['label'],
-                                icon: item['icon'],
-                                onTap: item['onTap'],
-                              );
-                            }).toList(),
+                            children:
+                                menuItems.map((item) {
+                                  return MenuItem(
+                                    label: item['label'],
+                                    icon: item['icon'],
+                                    onTap: item['onTap'],
+                                  );
+                                }).toList(),
                           ),
                           const SizedBox(height: 20),
-                          // Botão para acessar a página do campus.
                           GestureDetector(
                             onTap: () async {
                               await openWebPage(
@@ -247,7 +222,7 @@ class _CampusScreenState extends State<CampusScreen> {
                                   Icon(
                                     Icons.public,
                                     color: AppColors.textColor,
-                             size: size.height * 0.04
+                                    size: size.height * 0.04,
                                   ),
                                   const SizedBox(width: 8),
                                   Text(
@@ -269,7 +244,6 @@ class _CampusScreenState extends State<CampusScreen> {
                   ),
                 ],
               ),
-              // Banner de indicação de scroll
               if (!_bannerDismissed && _showScrollArrow)
                 Positioned(
                   bottom: padding * 1.5,

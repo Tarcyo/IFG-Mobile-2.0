@@ -7,7 +7,7 @@ import 'package:ifg_mobile_estudante/layers/presentation/screens/login_screen.da
 import 'package:ifg_mobile_estudante/layers/presentation/screens/student_screen.dart/student_screen.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/styles/colors.dart';
 import 'package:provider/provider.dart';
-import 'login_header.dart';
+import 'screen_header.dart';
 import 'login_form.dart';
 import 'login_buttom.dart';
 
@@ -31,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
 void initState() {
   super.initState();
   _scrollController.addListener(_handleScroll);
-  _initAsync(); // Chama a função assíncrona separada
+  _initAsync(); 
 }
 
 Future<void> _initAsync() async {
@@ -51,7 +51,7 @@ Future<void> _initAsync() async {
 }
 
   void _handleScroll() {
-    // Lógica futura de scroll pode ser adicionada aqui
+
   }
 
   @override
@@ -83,7 +83,7 @@ Future<void> _initAsync() async {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                backgroundColor: AppColors.cardColor, // Cor de fundo do alerta
+                backgroundColor: AppColors.cardColor, 
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(32.0),
                 ),
@@ -95,7 +95,7 @@ Future<void> _initAsync() async {
                       style: TextStyle(
                         fontSize: screenWidth * 0.055,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.textColor, // Cor do texto
+                        color: AppColors.textColor, 
                       ),
                     ),
                   ],
@@ -108,7 +108,7 @@ Future<void> _initAsync() async {
                       style: TextStyle(
                         color:
                             AppColors
-                                .descriptionColor, // Cor do texto secundário
+                                .descriptionColor, 
                         fontSize: screenWidth * 0.032,
                       ),
                     ),
@@ -122,7 +122,7 @@ Future<void> _initAsync() async {
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
                               AppColors
-                                  .solidBackgroundColor, // Cor de fundo do botão
+                                  .solidBackgroundColor, 
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(180.0),
                           ),
@@ -133,7 +133,7 @@ Future<void> _initAsync() async {
                         child: Text(
                           "Ok",
                           style: TextStyle(
-                            color: AppColors.textColor, // Cor do texto do botão
+                            color: AppColors.textColor, 
                             fontSize: screenWidth * 0.032,
                           ),
                         ),
@@ -158,13 +158,13 @@ Future<void> _initAsync() async {
     final double paddingVertical = size.height * 0.05;
 
     return Scaffold(
-      backgroundColor: AppColors.solidBackgroundColor, // Cor de fundo da tela
+      backgroundColor: AppColors.screenBackgroundGradient.first,
       body: Container(
         width: double.infinity,
         height: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: AppColors.mainGradientColors, // Gradiente de fundo
+            colors: AppColors.mainGradientColors, 
             stops: [0.1, 0.5, 0.9],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,

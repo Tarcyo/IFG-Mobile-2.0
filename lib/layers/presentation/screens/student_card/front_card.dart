@@ -13,7 +13,6 @@ Widget buildFrontCard(Size size) {
         return Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            // Exibe a imagem em formato circular. Caso ocorra erro ou carregamento lento, apresenta alternativas.
             ClipOval(
               child: Image.network(
                 consumer.alunoController.aluno!.getFullImageUrl!,

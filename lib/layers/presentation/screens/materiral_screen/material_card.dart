@@ -39,7 +39,6 @@ class MaterialCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Cabeçalho com ícone, nome do material e botão de download
           Row(
             children: [
               Icon(Icons.folder_open, color: AppColors.textColor, size: iconSize),
@@ -65,7 +64,6 @@ class MaterialCard extends StatelessWidget {
             ],
           ),
           SizedBox(height: spacing * 1.5),
-          // Informações do arquivo: tipo e data
           Row(
             children: [
               Row(

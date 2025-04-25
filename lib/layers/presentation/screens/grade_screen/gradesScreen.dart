@@ -131,7 +131,6 @@ class _GradesScreenState extends State<GradesScreen> {
                 },
               ),
               const SizedBox(height: 6),
-              // Listagem das notas
               Expanded(
                 child: Stack(
                   children: [

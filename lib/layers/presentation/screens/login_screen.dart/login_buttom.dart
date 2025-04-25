@@ -19,9 +19,9 @@ class LoginButton extends StatelessWidget {
           horizontal: buttonWidth * 0.5,
           vertical: 16,
         ),
-        backgroundColor: AppColors.textColor,  // Usando a cor sólida definida em AppColors
+        backgroundColor: AppColors.textColor, 
         elevation: 10,
-        shadowColor: AppColors.shadowColor,  // Usando a cor de sombra definida
+        shadowColor: AppColors.shadowColor,  
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(180),
         ),
@@ -31,7 +31,7 @@ class LoginButton extends StatelessWidget {
         style: TextStyle(
           fontSize: fontSizeButton,
           fontWeight: FontWeight.bold,
-          color: AppColors.solidBackgroundColor,  // Usando a cor do texto definida
+          color: AppColors.solidBackgroundColor, 
         ),
       ),
     );

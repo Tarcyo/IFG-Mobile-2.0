@@ -14,11 +14,9 @@ Widget buildBackCard(Size size) {
       builder: (context, userProvider, child) {
         final aluno = userProvider.alunoController.aluno;
 
-        // Recupera os valores das datas.
         final DateTime? dataInicio = aluno?.getDataInicio;
         final DateTime? dataFim = aluno?.getDataFim;
 
-        // Formata as datas para dd/MM/yyyy ou retorna "----" se for nulo.
         final String formattedDataInicio =
             dataInicio != null
                 ? dataInicio.day.toString().padLeft(2, '0') +

@@ -77,7 +77,7 @@ class LoginForm extends StatelessWidget {
           hintText: hintText,
           hintStyle: TextStyle(fontSize: fontSize * 0.9),
           filled: true,
-          fillColor: AppColors.textColor,  // Usando a cor sólida do AppColors para o fundo
+          fillColor: AppColors.textColor,  
           contentPadding: const EdgeInsets.symmetric(vertical: 18),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(180),
@@ -85,7 +85,7 @@ class LoginForm extends StatelessWidget {
           ),
           prefixIcon: Icon(
             icon,
-            color: AppColors.solidBackgroundColor,  // Usando a cor do texto definida
+            color: AppColors.solidBackgroundColor,  
             size: fontSize * 1.2,
           ),
         ),
@@ -100,13 +100,13 @@ class LoginForm extends StatelessWidget {
         Checkbox(
           value: value,
           onChanged: onChanged,
-          activeColor: AppColors.textColor,  // Usando a cor de texto definida para o checkbox
-          checkColor: AppColors.solidBackgroundColor,  // Usando o verde para o check
+          activeColor: AppColors.textColor,  
+          checkColor: AppColors.solidBackgroundColor,  
         ),
         Flexible(
           child: Text(
             title,
-            style: TextStyle(color: AppColors.textColor),  // Usando a cor do texto definida
+            style: TextStyle(color: AppColors.textColor),  
             overflow: TextOverflow.visible,
             softWrap: true,
           ),

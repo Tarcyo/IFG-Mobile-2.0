@@ -15,7 +15,6 @@ class CustomHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = size.width;
 
-    // 📐 Mesmas proporções do ScreenHeader original
     final double horizontalPadding = screenWidth * 0.04;
     final double iconSize = screenWidth * 0.065;
     final double titleFontSize = screenWidth * 0.06;

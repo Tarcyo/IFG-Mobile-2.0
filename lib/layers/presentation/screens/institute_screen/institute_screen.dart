@@ -44,7 +44,6 @@ class _InstituteScreenState extends State<InstituteScreen>
     super.dispose();
   }
 
-  // Dados dos itens do grid de menu com onTap
   List<Map<String, Object>> get menuItems => [
     {
       'label': 'Estude no\nIFG',
@@ -74,7 +73,6 @@ class _InstituteScreenState extends State<InstituteScreen>
         await openWebPage("https://ifg.edu.br/assistencia-estudantil");
       },
     },
-
     {
       'label': 'Ouvidoria',
       'icon': Icons.campaign_rounded,
@@ -137,7 +135,7 @@ class _InstituteScreenState extends State<InstituteScreen>
     final double verticalPadding = size.height * 0.02;
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.screenBackgroundGradient.first,
       body: SafeArea(
         child: Container(
           width: size.width,
