@@ -7,7 +7,7 @@ class NotasController {
   NotasController({required GetNotasDoAlunoPorMatriculaUseCase getNotasAlunoPorMatriculaUseCase}) : _getNotasDoAlunoPorMatriculaUseCase = getNotasAlunoPorMatriculaUseCase;
  
  late List<GradeDiaryEntity?>? notas;
-  getAlunoPorMatricula(String matricula)async{
+  getNotasDoAlunoPorMatricula(String matricula)async{
      notas= await _getNotasDoAlunoPorMatriculaUseCase(matricula);
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ifg_mobile_estudante/core/utils/scroll_hint_banner.dart';
+import 'package:ifg_mobile_estudante/layers/presentation/providers/materiais_controller_provider.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/styles/colors.dart';
+import 'package:provider/provider.dart';
 import 'screen_header.dart';
 import 'discipline_selector.dart';
 import 'material_card.dart';
@@ -14,46 +16,7 @@ class MaterialScreen extends StatefulWidget {
 
 class _MaterialScreenState extends State<MaterialScreen> {
   final Map<String, List<Map<String, String>>> materialsData = {
-    'Matemática': [
-      {
-        'name': 'Apostila Álgebra Linear',
-        'fileType': 'PDF',
-        'date': '01/04/2025',
-      },
-      {
-        'name': 'Exercícios de Geometria',
-        'fileType': 'DOCX',
-        'date': '05/04/2025',
-      },
-    ],
-    'História': [
-      {
-        'name': 'Linha do Tempo das Guerras Mundiais',
-        'fileType': 'PDF',
-        'date': '03/04/2025',
-      },
-    ],
-    'Biologia': [
-      {
-        'name': 'Material Genética e Evolução',
-        'fileType': 'PPT',
-        'date': '07/04/2025',
-      },
-    ],
-    'Química': [
-      {
-        'name': 'Tabela Periódica Interativa',
-        'fileType': 'HTML',
-        'date': '02/04/2025',
-      },
-    ],
-    'Literatura': [
-      {
-        'name': 'Análise de Obras Clássicas',
-        'fileType': 'PDF',
-        'date': '06/04/2025',
-      },
-    ],
+   
   };
 
   late String _selectedDiscipline;
@@ -64,6 +27,26 @@ class _MaterialScreenState extends State<MaterialScreen> {
   @override
   void initState() {
     super.initState();
+
+    for (final disciplina
+        in Provider.of<DisciplinaMaterialControllerProvider>(
+          context,
+          listen: false,
+        ).controller.disciplinas!) {
+      print("Disciplina:" + disciplina.toString());
+      materialsData.addAll({disciplina!.nome: [
+        
+        ],
+      });
+      for (final materiais in disciplina.materiais){
+        materialsData[disciplina.nome]!.add( {
+        'name': materiais.nome,
+        'fileType': materiais.tipoDeArquivo,
+        'date': materiais.data.year.toString()+"/"+materiais.data.month.toString()+"/"+materiais.data.day.toString(),
+      });
+      }
+    }
+
     _selectedDiscipline = materialsData.keys.first;
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -77,7 +60,8 @@ class _MaterialScreenState extends State<MaterialScreen> {
 
     _scrollController.addListener(() {
       if (_scrollController.hasClients) {
-        final isAtBottom = _scrollController.offset >=
+        final isAtBottom =
+            _scrollController.offset >=
             _scrollController.position.maxScrollExtent;
         setState(() {
           _showScrollHint = !isAtBottom;
@@ -136,8 +120,9 @@ class _MaterialScreenState extends State<MaterialScreen> {
                   children: [
                     AnimatedSwitcher(
                       duration: const Duration(milliseconds: 300),
-                      transitionBuilder: (child, animation) =>
-                          FadeTransition(opacity: animation, child: child),
+                      transitionBuilder:
+                          (child, animation) =>
+                              FadeTransition(opacity: animation, child: child),
                       child: ListView.builder(
                         key: ValueKey(_selectedDiscipline),
                         controller: _scrollController,
