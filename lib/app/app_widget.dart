@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ifg_mobile_estudante/app/app_config_class.dart';
 import 'package:ifg_mobile_estudante/app/app_providers.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/screens/tabBar/main_tab_bar.dart';
+import 'package:ifg_mobile_estudante/layers/presentation/styles/colors.dart';
 import 'package:provider/provider.dart';
 
 class IFGApp extends StatelessWidget {
@@ -21,7 +22,7 @@ class IFGApp extends StatelessWidget {
 
   void _configureSystemUI() {
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: Colors.teal.shade900),
+      SystemUiOverlayStyle(statusBarColor: AppColors.mainGradientColors.first),
     );
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   }
@@ -37,8 +38,8 @@ class IFGApp extends StatelessWidget {
 
   ThemeData _buildAppTheme() {
     return ThemeData(
-      appBarTheme: const AppBarTheme(
-        iconTheme: IconThemeData(color: Colors.white),
+      appBarTheme: AppBarTheme(
+        iconTheme: IconThemeData(color: AppColors.mainGradientColors.first),
       ),
       fontFamily: "Quicksand",
     );
