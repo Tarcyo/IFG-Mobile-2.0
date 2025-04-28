@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:ifg_mobile_estudante/layers/presentation/providers/boletim_controller_provider.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/styles/colors.dart';
+import 'package:provider/provider.dart';
 
 class HeaderWidget extends StatelessWidget {
-  final VoidCallback onBack;
 
   const HeaderWidget({
     Key? key,
-    required this.onBack,
   }) : super(key: key);
 
   @override
@@ -48,7 +48,10 @@ class HeaderWidget extends StatelessWidget {
                 color: AppColors.textColor,
                 size: iconSize,
               ),
-              onPressed: onBack,
+              onPressed: () {
+                Provider.of<AnosBoletimControllerProvider>(context,listen: false).controller.anosBoletim=null;
+                Navigator.pop(context);
+              }
             ),
           ),
           SizedBox(width: spacingAfterIcon),

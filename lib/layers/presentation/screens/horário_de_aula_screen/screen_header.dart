@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ifg_mobile_estudante/layers/presentation/providers/dia_da_semana_controller_provider.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/styles/colors.dart';
+import 'package:provider/provider.dart';
 
 class ScreenHeader extends StatelessWidget {
   final String title;
@@ -48,7 +50,12 @@ class ScreenHeader extends StatelessWidget {
                 color: AppColors.textColor,
                 size: iconSize,
               ),
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () {
+                Provider.of<DiasDaSemanaControllerProvider>(context,listen: false).controller.diasDaSemana=null;
+                
+                
+                Navigator.of(context).pop();
+              },
             ),
           ),
           SizedBox(width: spacing),

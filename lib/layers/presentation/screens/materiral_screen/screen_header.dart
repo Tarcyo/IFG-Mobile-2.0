@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:ifg_mobile_estudante/layers/presentation/providers/materiais_controller_provider.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/styles/colors.dart';
+import 'package:provider/provider.dart';
 
 class ScreenHeader extends StatelessWidget {
   final String title;
-  final VoidCallback onBack;
   final double verticalPadding;
 
   const ScreenHeader({
     Key? key,
     required this.title,
-    required this.onBack,
     required this.verticalPadding,
   }) : super(key: key);
 
@@ -50,7 +50,11 @@ class ScreenHeader extends StatelessWidget {
                 color: AppColors.textColor,
                 size: iconSize,
               ),
-              onPressed: onBack,
+              onPressed: (){
+                Provider.of<DisciplinaMaterialControllerProvider>(context,listen: false).controller.disciplinas=null;
+                Navigator.of(context).pop();
+
+              },
             ),
           ),
 

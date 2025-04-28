@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ifg_mobile_estudante/core/utils/scroll_hint_banner.dart';
+import 'package:ifg_mobile_estudante/layers/presentation/providers/boletim_controller_provider.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/screens/report/subject_card_widget.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/screens/report/year_selector.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/styles/colors.dart';
+import 'package:provider/provider.dart';
 import 'screen_header.dart';
 
 class BoletimScreen extends StatefulWidget {
@@ -13,63 +15,7 @@ class BoletimScreen extends StatefulWidget {
 }
 
 class _BoletimScreenState extends State<BoletimScreen> {
-    final Map<String, List<Map<String, String>>> reportData = {
-    '2023': [
-      {
-        'subject': 'Matemática',
-        'status': 'Aprovado',
-        'teacher': 'Prof. Silva',
-        'average': '8.5',
-        'absences': '2/10',
-      },
-      {
-        'subject': 'Física',
-        'status': 'Aprovado',
-        'teacher': 'Prof. Souza',
-        'average': '7.8',
-        'absences': '1/8',
-      },
-    ],
-    '2022': [
-      {
-        'subject': 'Química',
-        'status': 'Reprovado',
-        'teacher': 'Prof. Almeida',
-        'average': '5.4',
-        'absences': '4/10',
-      },
-      {
-        'subject': 'História',
-        'status': 'Aprovado',
-        'teacher': 'Prof. Costa',
-        'average': '8.9',
-        'absences': '0/12',
-      },
-      {
-        'subject': 'Geografia',
-        'status': 'Aprovado',
-        'teacher': 'Prof. Ribeiro',
-        'average': '9.2',
-        'absences': '1/10',
-      },
-    ],
-    '2021': [
-      {
-        'subject': 'Literatura',
-        'status': 'Aprovado',
-        'teacher': 'Profª. Lima',
-        'average': '8.0',
-        'absences': '2/8',
-      },
-      {
-        'subject': 'Biologia',
-        'status': 'Aprovado',
-        'teacher': 'Prof. Martins',
-        'average': '8.3',
-        'absences': '3/10',
-      },
-    ],
-  };
+  final Map<String, List<Map<String, String>>> reportData = {};
 
   late String _selectedYear;
   final ScrollController _gradesScrollController = ScrollController();
@@ -79,6 +25,25 @@ class _BoletimScreenState extends State<BoletimScreen> {
   @override
   void initState() {
     super.initState();
+    for (final ano
+        in Provider.of<AnosBoletimControllerProvider>(
+          context,
+          listen: false,
+        ).controller.anosBoletim!) {
+      reportData.addAll({ano!.numeroAno.toString(): [
+         
+        ],
+      });
+      for (final i in ano.disciplinas) {
+        reportData[ano.numeroAno.toString()]!.add({
+          'subject': i.nome,
+          'status': i.situacao,
+          'teacher': i.professor,
+          'average': i.media.toString(),
+          'absences': i.faltas.toString() + "/" + i.maximoFaltas.toString(),
+        });
+      }
+    }
     _selectedYear = reportData.keys.first;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_gradesScrollController.hasClients &&
@@ -120,7 +85,7 @@ class _BoletimScreenState extends State<BoletimScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              HeaderWidget(onBack: () => Navigator.of(context).pop()),
+              HeaderWidget(),
               YearSelector(
                 years: reportData.keys.toList(),
                 selectedYear: _selectedYear,
@@ -132,8 +97,9 @@ class _BoletimScreenState extends State<BoletimScreen> {
                   children: [
                     AnimatedSwitcher(
                       duration: Duration(milliseconds: 300),
-                      transitionBuilder: (child, animation) =>
-                          FadeTransition(opacity: animation, child: child),
+                      transitionBuilder:
+                          (child, animation) =>
+                              FadeTransition(opacity: animation, child: child),
                       child: ListView.builder(
                         key: ValueKey(_selectedYear),
                         controller: _gradesScrollController,
@@ -151,7 +117,8 @@ class _BoletimScreenState extends State<BoletimScreen> {
                         right: 0,
                         child: Center(
                           child: ScrollHintBanner(
-                            onDismissed: () => setState(() => _bannerDismissed = true),
+                            onDismissed:
+                                () => setState(() => _bannerDismissed = true),
                           ),
                         ),
                       ),

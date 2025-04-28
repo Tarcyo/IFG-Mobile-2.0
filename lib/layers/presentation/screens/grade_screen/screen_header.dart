@@ -67,10 +67,9 @@ class ScreenHeader extends StatelessWidget {
                     size: iconSize,
                   ),
                   onPressed: () {
-                    Provider.of<NotasControlerProvider>(
-                      context,
-                      listen: false,
-                    ).controller;
+                    Provider.of<NotasControlerProvider>(context, listen: false)
+                        .controller
+                        .notas = null;
                     Navigator.pop(context);
                   },
                 ),
@@ -154,26 +153,27 @@ class ScreenHeader extends StatelessWidget {
                       onDisciplineSelected(newValue);
                     }
                   },
-                  items: disciplines.map((discipline) {
-                    return DropdownMenuItem<String>(
-                      value: discipline,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: dropdownPadding,
-                          vertical: dropdownPadding * 0.6,
-                        ),
-                        child: Text(
-                          discipline,
-                          style: TextStyle(
-                            color: AppColors.textColor,
-                            fontSize: dropdownFontSize,
-                            fontFamily: "Quicksand",
-                            fontWeight: FontWeight.bold,
+                  items:
+                      disciplines.map((discipline) {
+                        return DropdownMenuItem<String>(
+                          value: discipline,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: dropdownPadding,
+                              vertical: dropdownPadding * 0.6,
+                            ),
+                            child: Text(
+                              discipline,
+                              style: TextStyle(
+                                color: AppColors.textColor,
+                                fontSize: dropdownFontSize,
+                                fontFamily: "Quicksand",
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    );
-                  }).toList(),
+                        );
+                      }).toList(),
                 ),
               ),
             ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/providers/aluno_entity_controller_provider.dart';
+import 'package:ifg_mobile_estudante/layers/presentation/providers/boletim_controller_provider.dart';
+import 'package:ifg_mobile_estudante/layers/presentation/providers/dia_da_semana_controller_provider.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/providers/materiais_controller_provider.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/providers/notas_list_controller_provider.dart';
 import 'package:ifg_mobile_estudante/core/utils/scroll_hint_banner.dart';
@@ -48,7 +50,117 @@ class MenuGrid extends StatelessWidget {
       {
         'label': 'Horário de Aula',
         'icon': Icons.schedule_rounded,
-        'onTap': () => fadePush(context, const HorarioDeAulaScreen()),
+        'onTap': () async {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Carregando...",
+                      style: TextStyle(
+                        color: AppColors.textColor,
+                        fontSize: size.height * 0.035,
+                      ),
+                    ),
+                    SizedBox(
+                      width: size.height * 0.06,
+                      height: size.height * 0.06,
+                      child: CircularProgressIndicator(
+                        strokeWidth: size.height * 0.01,
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          AppColors.textColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+
+          final AlunoControllerProvider alunoProvider =
+              Provider.of<AlunoControllerProvider>(context, listen: false);
+          final DiasDaSemanaControllerProvider horarioDeAulaController =
+              Provider.of<DiasDaSemanaControllerProvider>(context, listen: false);
+
+          await horarioDeAulaController.controller.getDiasDaSemana(
+            alunoProvider.alunoController.aluno!.getMatricula,
+          );
+
+          Navigator.of(context, rootNavigator: true).pop();
+
+          if (horarioDeAulaController.controller.diasDaSemana == null) {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  backgroundColor: AppColors.solidBackgroundColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(32.0),
+                  ),
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Atenção",
+                        style: TextStyle(
+                          fontSize: size.width * 0.055,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.textColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "Falha ao tentar conectar.",
+                        style: TextStyle(
+                          color: AppColors.textColor,
+                          fontSize: size.width * 0.032,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                  actions: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(180.0),
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text(
+                            "Ok",
+                            style: TextStyle(
+                              color: AppColors.solidBackgroundColor,
+                              fontSize: size.width * 0.032,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                );
+              },
+            );
+          } else {
+            fadePush(context, HorarioDeAulaScreen());
+          }
+        },
       },
       {
         'label': 'Minhas Notas',
@@ -168,7 +280,119 @@ class MenuGrid extends StatelessWidget {
       {
         'label': 'Meu Boletim',
         'icon': Icons.receipt_long_rounded,
-        'onTap': () => fadePush(context, const BoletimScreen()),
+        'onTap': () async {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Carregando...",
+                      style: TextStyle(
+                        color: AppColors.textColor,
+                        fontSize: size.height * 0.035,
+                      ),
+                    ),
+                    SizedBox(
+                      width: size.height * 0.06,
+                      height: size.height * 0.06,
+                      child: CircularProgressIndicator(
+                        strokeWidth: size.height * 0.01,
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          AppColors.textColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+
+          final AlunoControllerProvider alunoProvider =
+              Provider.of<AlunoControllerProvider>(context, listen: false);
+          final AnosBoletimControllerProvider boletimControlerProvider =
+              Provider.of<AnosBoletimControllerProvider>(context, listen: false);
+
+          await boletimControlerProvider.controller.getAnosBoletim(
+            alunoProvider.alunoController.aluno!.getMatricula,
+          );
+
+          Navigator.of(context, rootNavigator: true).pop();
+
+          print("O boletim é: "+boletimControlerProvider.controller.anosBoletim.toString());
+
+          if (boletimControlerProvider.controller.anosBoletim == null) {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  backgroundColor: AppColors.solidBackgroundColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(32.0),
+                  ),
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Atenção",
+                        style: TextStyle(
+                          fontSize: size.width * 0.055,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.textColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "Falha ao tentar conectar.",
+                        style: TextStyle(
+                          color: AppColors.textColor,
+                          fontSize: size.width * 0.032,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                  actions: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(180.0),
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text(
+                            "Ok",
+                            style: TextStyle(
+                              color: AppColors.solidBackgroundColor,
+                              fontSize: size.width * 0.032,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                );
+              },
+            );
+          } else {
+            fadePush(context, BoletimScreen());
+          }
+        },
       },
       {
         'label': 'Material de Aula',
