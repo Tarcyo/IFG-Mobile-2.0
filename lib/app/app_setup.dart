@@ -4,6 +4,8 @@ import 'package:get_it/get_it.dart';
 import 'package:ifg_mobile_estudante/app/app_config_class.dart';
 import 'package:ifg_mobile_estudante/core/inject/inject.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/controllers/aluno_controller.dart';
+import 'package:ifg_mobile_estudante/layers/presentation/controllers/boletim_controler.dart';
+import 'package:ifg_mobile_estudante/layers/presentation/controllers/hor%C3%A1rio_controler.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/controllers/material_controler.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/controllers/notas_controler.dart';
 
@@ -26,10 +28,12 @@ class AppSetup {
     final storage = FlutterSecureStorage();
     final autoLogin = (await storage.read(key: 'autoLogin')) == 'true';
     
+    // Obtendo os controllers registrados
     final alunoController = GetIt.instance.get<AlunoController>();
     final notasController = GetIt.instance.get<NotasController>();
     final materialController = GetIt.instance.get<DisciplinaMaterialController>();
-
+    final anosBoletimController = GetIt.instance.get<AnosBoletimController>();
+    final diasDaSemanaController = GetIt.instance.get<DiasDaSemanaController>(); // Adicionado
 
     if (autoLogin) {
       final matricula = await storage.read(key: 'matricula') ?? "";
@@ -40,8 +44,9 @@ class AppSetup {
       autoLogin: autoLogin,
       alunoController: alunoController,
       notasController: notasController,
-      disciplinaController: materialController
-
+      disciplinaController: materialController,
+      anosBoletimController: anosBoletimController,
+      diasDaSemanaController: diasDaSemanaController, // Passando o DiasDaSemanaController
     );
   }
 }

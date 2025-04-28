@@ -1,6 +1,8 @@
 import 'package:ifg_mobile_estudante/app/app_config_class.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/providers/already_auto_logged_bool_provider.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/providers/aluno_entity_controller_provider.dart';
+import 'package:ifg_mobile_estudante/layers/presentation/providers/boletim_controller_provider.dart';
+import 'package:ifg_mobile_estudante/layers/presentation/providers/dia_da_semana_controller_provider.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/providers/materiais_controller_provider.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/providers/notas_list_controller_provider.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/providers/will_auto_login_bool_Provider.dart';
@@ -18,7 +20,13 @@ List<SingleChildWidget> getProviders(AppConfig config) {
       create: (_) => NotasControlerProvider(config.notasController),
     ),
     ChangeNotifierProvider(
-      create: (_) => DisciplinaMaterialControllerProvider(config.disciplinaController), // Adicionando o provider de Disciplina
+      create: (_) => DisciplinaMaterialControllerProvider(config.disciplinaController),
+    ),
+    ChangeNotifierProvider(
+      create: (_) => AnosBoletimControllerProvider(config.anosBoletimController),
+    ),
+    ChangeNotifierProvider(
+      create: (_) => DiasDaSemanaControllerProvider(config.diasDaSemanaController), // Adicionado provider de DiasDaSemana
     ),
   ];
 }
