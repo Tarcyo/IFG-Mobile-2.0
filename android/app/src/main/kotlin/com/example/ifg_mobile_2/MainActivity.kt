@@ -1,5 +1,0 @@
-package com.example.ifg_mobile_2
-
-import io.flutter.embedding.android.FlutterActivity
-
-class MainActivity : FlutterActivity()
