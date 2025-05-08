@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ifg_mobile_estudante/core/utils/url_launcher_helper.dart';
 import 'package:ifg_mobile_estudante/core/utils/scroll_hint_banner.dart';
+import 'package:ifg_mobile_estudante/layers/presentation/screens/rectory_message_screen/rectory_message_screen.dart';
 import 'package:ifg_mobile_estudante/layers/presentation/styles/colors.dart';
 import 'menu_item.dart';
 import 'screen_header.dart';
@@ -50,6 +54,38 @@ class _InstituteScreenState extends State<InstituteScreen>
       'icon': Icons.school_rounded,
       'onTap': () async {
         await openWebPage("http://www.ifg.edu.br/estudenoifg");
+      },
+    },
+    {
+      'label': 'Mensagem da reitoria',
+      'icon': Icons.message_rounded,
+      'onTap': () async {
+        final String jsonData = await rootBundle.loadString(
+          'assets/data/rectoryMessage.json',
+        );
+
+        final Map<String, dynamic> data = json.decode(jsonData);
+
+        Navigator.of(context).push(
+          PageRouteBuilder(
+            transitionDuration: const Duration(milliseconds: 350),
+            pageBuilder:
+                (context, animation, secondaryAnimation) =>
+                    ReitoriaMessageScreen(
+                      reitorName: 'Prof.(a) Oneida Cristina',
+                      reitorImagePath: 'assets/images/reitor(a).jpg',
+                      message: data['mensagem'],
+                    ),
+            transitionsBuilder: (
+              context,
+              animation,
+              secondaryAnimation,
+              child,
+            ) {
+              return FadeTransition(opacity: animation, child: child);
+            },
+          ),
+        );
       },
     },
     {
@@ -114,7 +150,7 @@ class _InstituteScreenState extends State<InstituteScreen>
     },
     {
       'label': 'Mapa do IFG',
-      'icon': Icons.map_outlined,
+      'icon': Icons.map_rounded,
       'onTap': () async {
         await openWebPage("https://ifg.edu.br/campus");
       },
