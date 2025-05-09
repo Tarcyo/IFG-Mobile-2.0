@@ -61,7 +61,7 @@ flutter emulators --launch <nome_do_emulador>
 flutter run
 ```
 
-### 3. Executar em Dispositivo Android Físico
+### 3. Alternativa: Executar em Dispositivo Android Físico
 
 1. Ative a **Depuração USB** nas opções de desenvolvedor do seu dispositivo Android.
 2. Conecte o dispositivo ao computador via USB.
