@@ -54,7 +54,7 @@ URL_Notas=""
 2. Abra o SDK Manager e instale o pacote mais recente do **Android SDK** e **Android SDK Platform-Tools**.
 3. Configure um **Dispositivo Virtual Android (AVD)** no AVD Manager.
 
-### 2. Executar no Dispositivo ou Emulador
+### 2. Executar no Emulador
 
 ```bash
 # Instale as dependências
@@ -63,11 +63,19 @@ flutter pub get
 # Para rodar em AVD (emulador)
 flutter emulators --launch <nome_do_emulador>
 flutter run
-
-# Para rodar em dispositivo físico conectado
-flutter devices          # veja o dispositivo
-flutter run -d <ID_do_dispositivo>
 ```
+
+### 3. Executar em Dispositivo Android Físico
+
+1. Ative a **Depuração USB** nas opções de desenvolvedor do seu dispositivo Android.
+2. Conecte o dispositivo ao computador via USB.
+3. Confirme a autorização de depuração no dispositivo.
+4. No terminal, execute:
+   ```bash
+   flutter devices          # lista dispositivos disponíveis
+   flutter run -d <ID_do_dispositivo>
+   ```
+5. Aguarde a instalação e inicialização do app no seu Android.
 
 ---
 
