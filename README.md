@@ -137,3 +137,156 @@ Para dúvidas sobre o `.env` ou acesso a credenciais, envie um e-mail para: **ta
 ---
 
 <p align="center">Desenvolvido com ❤️ por Tarcyo Maia</p>
+
+# Gerenciador Escolar SUAP
+
+Este aplicativo oferece uma plataforma de gerenciamento escolar onde alunos podem visualizar suas notas, horários e boletins por meio da integração ao SUAP-Ensino, substituindo o aplicativo descontinuado integrado ao Q-Acadêmico. A estrutura modular e organizada garante performance, clareza e manutenibilidade, seguindo os princípios da Clean Architecture.
+
+---
+
+## Índice
+
+- [Visão Geral](#visão-geral)
+- [Estrutura de Pastas](#estrutura-de-pastas)
+  - [lib/app](#libapp)
+  - [lib/core](#libcore)
+  - [lib/layers](#liblayers)
+    - [Data](#data)
+    - [Domain](#domain)
+    - [Presentation](#presentation)
+- [Benefícios](#benefícios)
+- [Como Executar](#como-executar)
+- [Contribuindo](#contribuindo)
+- [Licença](#licença)
+- [Contato](#contato)
+
+---
+
+## 🔍 Visão Geral
+
+Este aplicativo foi desenvolvido para fornecer aos estudantes uma forma simples e eficiente de acessar suas informações acadêmicas (notas, horários e boletins) por meio da API do SUAP-Ensino. A arquitetura limpa (Clean Architecture) foi adotada para assegurar:
+
+- Alta coesão e baixo acoplamento
+- Responsabilidades bem definidas
+- Facilidade de testes e manutenção
+- Escalabilidade para futuras funcionalidades
+
+---
+
+## 📂 Estrutura de Pastas
+
+```
+lib/
+├── app/
+├── core/
+└── layers/
+    ├── data/
+    ├── domain/
+    └── presentation/
+```
+
+<a name="libapp"></a>
+### 1. lib/app
+
+Responsável pela configuração e bootstrap da aplicação.
+
+| Arquivo                   | Descrição                                                     |
+|---------------------------|---------------------------------------------------------------|
+| `app_config_class.dart`   | Constantes de tema, fontes, tamanhos e URLs da API            |
+| `app_providers.dart`      | Registro de providers e controllers para injeção de dependência |
+| `app_setup.dart`          | Configuração do Service Locator (GetIt) e inicialização       |
+| `app_widget.dart`         | Widget raiz com tema, rotas e responsividade                  |
+| `auto_login_handler.dart` | Lógica de auto-login: valida token e redireciona usuário      |
+
+<a name="libcore"></a>
+### 2. lib/core
+
+Infraestrutura e utilitários genéricos reutilizáveis.
+
+```
+lib/core/
+├── inject/   (configuração de injeção de dependências)
+└── utils/    (helpers: formatação, validação, network)
+```
+
+<a name="liblayers"></a>
+### 3. lib/layers
+
+Implementação da Clean Architecture, dividida em três camadas:
+
+<a name="data"></a>
+#### 3.1 Data
+
+- **datasources/**: RemoteDatasource (DIO HTTP) e LocalDatasource (Hive / SharedPreferences)
+- **dto/**: Data Transfer Objects para isolar o Domain dos detalhes da API
+- **repositories/**: Implementação dos contratos, mapeamento de DTOs para entidades e tratamento de erros
+
+<a name="domain"></a>
+#### 3.2 Domain
+
+- **entities/**: Modelos imutáveis (Aluno, Horário, Matéria, Nota)
+- **repositories/**: Interfaces que definem contratos para acesso a dados
+- **usecases/**: Casos de uso (GetBoletim, SaveNota) que encapsulam regras de negócio
+
+<a name="presentation"></a>
+#### 3.3 Presentation
+
+- **controllers/**: ChangeNotifier ou Streams que acionam UseCases e gerenciam estado
+- **providers/**: Configuração de Provider / Riverpod para disponibilizar controllers
+- **screens/**: Widgets para cada tela do app
+- **styles/**: Paleta de cores, tipografia, gradientes e CustomPainters
+
+---
+
+## 💡 Benefícios
+
+- **Separação de Responsabilidades**: cada módulo tem uma única responsabilidade.
+- **Testabilidade**: Domain e Data testáveis isoladamente.
+- **Escalabilidade**: fácil inclusão de novos UseCases ou DataSources.
+- **Manutenção**: alterações em API ou UI são localizadas.
+
+---
+
+## 🚀 Como Executar
+
+```bash
+# Instale dependências
+flutter pub get
+
+# Execute no emulador ou dispositivo conectado
+flutter run
+```
+
+---
+
+## 🤝 Contribuindo
+
+1. Faça um fork do repositório
+2. Crie uma branch para sua feature:
+   ```bash
+   git checkout -b feature/nova-funcionalidade
+   ```
+3. Commit suas alterações:
+   ```bash
+   git commit -m "Adiciona nova funcionalidade"
+   ```
+4. Envie para sua branch:
+   ```bash
+   git push origin feature/nova-funcionalidade
+   ```
+5. Abra um Pull Request neste repositório.
+
+---
+
+## 📄 Licença
+
+Este projeto está licenciado sob a [MIT License](LICENSE).
+
+---
+
+## 📬 Contato
+
+- **Desenvolvedor**: Seu Nome
+- **Email**: seu.email@exemplo.com
+- **LinkedIn**: [linkedin.com/in/seu-perfil](https://linkedin.com/in/seu-perfil)
+```
