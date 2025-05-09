@@ -120,23 +120,11 @@ flutter run -d windows
 
 ---
 
-## 🤝 Contribuição
 
-1. Fork este repositório
-2. Crie uma branch: `git checkout -b feature/minha-nova-funcionalidade`
-3. Faça seu commit: `git commit -m 'Adiciona nova funcionalidade'`
-4. Envie para o branch: `git push origin feature/minha-nova-funcionalidade`
-5. Abra um Pull Request
+
 
 ---
 
-## 📫 Contato
-
-Para dúvidas sobre o `.env` ou acesso a credenciais, envie um e-mail para: **tarcyomaia@gmail.com**
-
----
-
-<p align="center">Desenvolvido com ❤️ por Tarcyo Maia</p>
 
 # Gerenciador Escolar SUAP
 
@@ -284,9 +272,11 @@ Este projeto está licenciado sob a [MIT License](LICENSE).
 
 ---
 
-## 📬 Contato
 
-- **Desenvolvedor**: Seu Nome
-- **Email**: seu.email@exemplo.com
-- **LinkedIn**: [linkedin.com/in/seu-perfil](https://linkedin.com/in/seu-perfil)
-```
+## 📫 Contato
+
+Para dúvidas sobre o `.env` ou acesso a credenciais, envie um e-mail para: **tarcyomaia@gmail.com**
+
+
+<p align="center">Desenvolvido com ❤️ por Tarcyo Guilherme Maia Borges</p>
+
