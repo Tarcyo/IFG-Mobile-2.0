@@ -121,32 +121,9 @@ flutter run -d windows
 ---
 
 
-
-
----
-
-
-# Gerenciador Escolar SUAP
+# 🏗️ Arquitetura do aplicativo
 
 Este aplicativo oferece uma plataforma de gerenciamento escolar onde alunos podem visualizar suas notas, horários e boletins por meio da integração ao SUAP-Ensino, substituindo o aplicativo descontinuado integrado ao Q-Acadêmico. A estrutura modular e organizada garante performance, clareza e manutenibilidade, seguindo os princípios da Clean Architecture.
-
----
-
-## Índice
-
-- [Visão Geral](#visão-geral)
-- [Estrutura de Pastas](#estrutura-de-pastas)
-  - [lib/app](#libapp)
-  - [lib/core](#libcore)
-  - [lib/layers](#liblayers)
-    - [Data](#data)
-    - [Domain](#domain)
-    - [Presentation](#presentation)
-- [Benefícios](#benefícios)
-- [Como Executar](#como-executar)
-- [Contribuindo](#contribuindo)
-- [Licença](#licença)
-- [Contato](#contato)
 
 ---
 
@@ -171,6 +148,7 @@ lib/
     ├── data/
     ├── domain/
     └── presentation/
+└── main.dart
 ```
 
 <a name="libapp"></a>
