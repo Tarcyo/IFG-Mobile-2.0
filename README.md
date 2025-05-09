@@ -1,9 +1,5 @@
 # IFG Mobile Estudante 2.0 🚀
 
-[![SUAP Integrado](https://img.shields.io/badge/SUAP-Integrado-brightgreen)](https://suap.ifg.edu.br)
-[![Material Mokado](https://img.shields.io/badge/Material-Mokado-yellow)](#)
-[![Boletim](https://img.shields.io/badge/Boletim-Mokado-blue)](#)
-[![Horário de Aula](https://img.shields.io/badge/Hor%C3%A1rio-Hor%C3%A1rio%20Mokado-orange)](#)
 
 Um aplicativo móvel em Flutter para estudantes do IFG, totalmente integrado ao SUAP e com funcionalidades de visualização de perfil, notas, material didático e horário de aulas.
 
